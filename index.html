@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>安安百货 - 官方专属直达通道</title>
+    <link rel="icon" type="image/jpeg" href="images/avatar.jpg">
     <style>
         * {
             margin: 0;
@@ -13,73 +14,90 @@
         body {
             font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
             min-height: 100vh;
-            background: url('/images/bg.jpg') no-repeat center center fixed;
+            /* 背景图：确保你的路径依然正确 */
+            background: url('bg.jpg') no-repeat center center fixed;
             background-size: cover;
             display: flex;
             justify-content: center;
             align-items: center;
             padding: 20px;
+            overflow: hidden; 
+            position: relative;
         }
+
         .overlay {
             position: fixed;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
-            background: rgba(5, 5, 15, 0.75);
+            background: rgba(5, 5, 15, 0.7);
             z-index: 1;
         }
+
+        #effectCanvas {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 2; 
+            pointer-events: none; /* 让鼠标穿透画布，不影响点击 */
+        }
+
         .card {
             position: relative;
-            z-index: 2;
+            z-index: 3; 
             background: rgba(20, 20, 35, 0.7);
             backdrop-filter: blur(16px);
             -webkit-backdrop-filter: blur(16px);
-            border: 1px solid rgba(0, 243, 255, 0.4);
+            border: 1px solid rgba(0, 243, 255, 0.3);
             border-radius: 20px;
-            padding: 40px 25px;
+            padding: 35px 25px;
             width: 100%;
-            max-width: 420px;
+            max-width: 440px;
             text-align: center;
-            box-shadow: 0 0 35px rgba(0, 243, 255, 0.25);
+            box-shadow: 0 0 35px rgba(0, 243, 255, 0.2);
             animation: fadeIn 0.8s ease-out;
         }
+
         @keyframes fadeIn {
             from { opacity: 0; transform: translateY(20px); }
             to { opacity: 1; transform: translateY(0); }
+        }
+
+        .welcome-badge {
+            display: inline-block;
+            color: #00f3ff;
+            font-size: 13px;
+            font-weight: bold;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            margin-bottom: 12px;
+            background: rgba(0, 243, 255, 0.05);
+            padding: 5px 12px;
+            border-radius: 20px;
+            border: 1px solid rgba(0, 243, 255, 0.2);
         }
         .title {
             color: #fff;
             font-size: 26px;
             font-weight: bold;
-            margin-bottom: 8px;
+            margin-bottom: 12px;
             letter-spacing: 1px;
             text-shadow: 0 0 10px rgba(0, 243, 255, 0.6);
         }
-        .subtitle {
-            color: #00f3ff;
-            font-size: 13px;
-            margin-bottom: 30px;
-            letter-spacing: 2px;
-            text-transform: uppercase;
-        }
-        .notice-box {
-            background: rgba(0, 0, 0, 0.45);
-            border: 1px dashed rgba(0, 243, 255, 0.4);
-            padding: 20px;
-            border-radius: 12px;
+        .slogan {
             color: #ffcc00;
-            font-size: 15px;
-            margin-bottom: 25px;
-            font-weight: bold;
-        }
-        .notice-box span {
-            color: rgba(255, 255, 255, 0.75);
-            font-weight: normal;
             font-size: 13px;
-            display: block;
-            margin-top: 6px;
+            line-height: 1.6;
+            margin-bottom: 25px;
+            background: rgba(0, 0, 0, 0.3);
+            padding: 12px 15px;
+            border-radius: 10px;
+            border: 1px dashed rgba(255, 204, 0, 0.3);
         }
+
         .btn-group {
             display: flex;
             flex-direction: column;
@@ -101,8 +119,7 @@
             color: #fff;
         }
         .btn-wx:hover {
-            background: linear-gradient(135deg, #08d46a, #06ad55);
-            box-shadow: 0 0 15px rgba(7, 193, 96, 0.6);
+            box-shadow: 0 0 15px rgba(7, 193, 96, 0.5);
             transform: translateY(-2px);
         }
         .btn-tg {
@@ -110,8 +127,7 @@
             color: #fff;
         }
         .btn-tg:hover {
-            background: linear-gradient(135deg, #28b0f5, #229ed9);
-            box-shadow: 0 0 15px rgba(34, 158, 217, 0.6);
+            box-shadow: 0 0 15px rgba(34, 158, 217, 0.5);
             transform: translateY(-2px);
         }
         .footer {
@@ -124,23 +140,138 @@
 <body>
     <div class="overlay"></div>
 
+    <canvas id="effectCanvas"></canvas>
+
     <div class="card">
+        <div class="welcome-badge">Welcome to AnAn Store</div>
         <div class="title">✨ 安安百货 ✨</div>
-        <div class="subtitle">Global Accounts & Services Platform</div>
-
-        <div class="notice-box">
-            🚀 官方专属服务通道已开通
-            <span>联系方式正在准备中，敬请期待...</span>
+        <div class="slogan">
+            安安百货始于2025蛇年新生<br>
+            我们不仅传递商品，更守护每一份平安~
         </div>
-
         <div class="btn-group">
             <a href="weixin://" class="btn btn-wx">💬 联系微信客服</a>
             <a href="https://t.me/你的飞机号" target="_blank" class="btn btn-tg">✈️ 点击进入 Telegram 专线</a>
         </div>
-
         <div class="footer">
             24H 自动发货 · 安全稳定 · 售后无忧
         </div>
     </div>
+
+    <script>
+        const canvas = document.getElementById('effectCanvas');
+        const ctx = canvas.getContext('2d');
+
+        function resizeCanvas() {
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
+        }
+        window.addEventListener('resize', resizeCanvas);
+        resizeCanvas();
+
+        // ================= 毛毛雨特效 =================
+        let raindrops = [];
+        const dropCount = 60; 
+
+        class Raindrop {
+            constructor() {
+                this.init();
+            }
+            init() {
+                this.x = Math.random() * canvas.width; 
+                this.y = Math.random() * canvas.height; 
+                this.length = Math.random() * 10 + 10; 
+                this.speed = Math.random() * 8 + 4; 
+                this.opacity = Math.random() * 0.2 + 0.1; 
+            }
+            update() {
+                this.y += this.speed;
+                if (this.y > canvas.width || this.y > canvas.height) {
+                    this.y = -this.length;
+                    this.x = Math.random() * canvas.width;
+                }
+            }
+            draw() {
+                ctx.beginPath();
+                ctx.strokeStyle = `rgba(180, 210, 240, ${this.opacity})`; 
+                ctx.lineWidth = 1; 
+                ctx.moveTo(this.x, this.y);
+                ctx.lineTo(this.x + (Math.random()*1 - 0.5), this.y + this.length); 
+                ctx.stroke();
+            }
+        }
+
+        for (let i = 0; i < dropCount; i++) {
+            raindrops.push(new Raindrop());
+        }
+
+        // ================= 鼠标拖尾特效 =================
+        let particles = [];
+        const mouse = { x: undefined, y: undefined };
+
+        // 监听鼠标移动
+        window.addEventListener('mousemove', (event) => {
+            mouse.x = event.x;
+            mouse.y = event.y;
+            // 每次移动产生几个粒子
+            for (let i = 0; i < 3; i++) {
+                particles.push(new Particle());
+            }
+        });
+
+        class Particle {
+            constructor() {
+                this.x = mouse.x;
+                this.y = mouse.y;
+                // 粒子随机大小
+                this.size = Math.random() * 3 + 1;
+                // 粒子往四周随机散开的速度
+                this.speedX = Math.random() * 2 - 1;
+                this.speedY = Math.random() * 2 - 1;
+                // 粒子生命周期（用于控制透明度淡出）
+                this.life = 1; 
+            }
+            update() {
+                this.x += this.speedX;
+                this.y += this.speedY;
+                // 逐渐缩小并变透明
+                if (this.size > 0.1) this.size -= 0.05;
+                this.life -= 0.03;
+            }
+            draw() {
+                // 青蓝色霓虹粒子
+                ctx.fillStyle = `rgba(0, 243, 255, ${this.life})`;
+                ctx.beginPath();
+                ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+                ctx.fill();
+            }
+        }
+
+        // ================= 动画主循环 =================
+        function animate() {
+            ctx.clearRect(0, 0, canvas.width, canvas.height); 
+
+            // 渲染雨滴
+            for (let i = 0; i < raindrops.length; i++) {
+                raindrops[i].update();
+                raindrops[i].draw();
+            }
+
+            // 渲染鼠标粒子
+            for (let i = 0; i < particles.length; i++) {
+                particles[i].update();
+                particles[i].draw();
+                // 如果粒子生命周期结束，从数组中移除
+                if (particles[i].life <= 0) {
+                    particles.splice(i, 1);
+                    i--; // 调整索引，防止闪烁
+                }
+            }
+
+            requestAnimationFrame(animate);
+        }
+
+        animate();
+    </script>
 </body>
 </html>
