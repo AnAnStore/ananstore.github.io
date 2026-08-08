@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>安安百货 - 官方专属直达通道</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            min-height: 100vh;
+            background: url('/images/bg.jpg') no-repeat center center fixed;
+            background-size: cover;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
+        .overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(5, 5, 15, 0.75);
+            z-index: 1;
+        }
+        .card {
+            position: relative;
+            z-index: 2;
+            background: rgba(20, 20, 35, 0.7);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border: 1px solid rgba(0, 243, 255, 0.4);
+            border-radius: 20px;
+            padding: 40px 25px;
+            width: 100%;
+            max-width: 420px;
+            text-align: center;
+            box-shadow: 0 0 35px rgba(0, 243, 255, 0.25);
+            animation: fadeIn 0.8s ease-out;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        .title {
+            color: #fff;
+            font-size: 26px;
+            font-weight: bold;
+            margin-bottom: 8px;
+            letter-spacing: 1px;
+            text-shadow: 0 0 10px rgba(0, 243, 255, 0.6);
+        }
+        .subtitle {
+            color: #00f3ff;
+            font-size: 13px;
+            margin-bottom: 30px;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+        }
+        .notice-box {
+            background: rgba(0, 0, 0, 0.45);
+            border: 1px dashed rgba(0, 243, 255, 0.4);
+            padding: 20px;
+            border-radius: 12px;
+            color: #ffcc00;
+            font-size: 15px;
+            margin-bottom: 25px;
+            font-weight: bold;
+        }
+        .notice-box span {
+            color: rgba(255, 255, 255, 0.75);
+            font-weight: normal;
+            font-size: 13px;
+            display: block;
+            margin-top: 6px;
+        }
+        .btn-group {
+            display: flex;
+            flex-direction: column;
+            gap: 14px;
+        }
+        .btn {
+            display: block;
+            width: 100%;
+            padding: 14px;
+            border-radius: 10px;
+            text-decoration: none;
+            font-weight: bold;
+            font-size: 15px;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+        }
+        .btn-wx {
+            background: linear-gradient(135deg, #07c160, #059b4c);
+            color: #fff;
+        }
+        .btn-wx:hover {
+            background: linear-gradient(135deg, #08d46a, #06ad55);
+            box-shadow: 0 0 15px rgba(7, 193, 96, 0.6);
+            transform: translateY(-2px);
+        }
+        .btn-tg {
+            background: linear-gradient(135deg, #229ed9, #1b7db1);
+            color: #fff;
+        }
+        .btn-tg:hover {
+            background: linear-gradient(135deg, #28b0f5, #229ed9);
+            box-shadow: 0 0 15px rgba(34, 158, 217, 0.6);
+            transform: translateY(-2px);
+        }
+        .footer {
+            margin-top: 25px;
+            color: rgba(255, 255, 255, 0.4);
+            font-size: 12px;
+        }
+    </style>
+</head>
+<body>
+    <div class="overlay"></div>
+
+    <div class="card">
+        <div class="title">✨ 安安百货 ✨</div>
+        <div class="subtitle">Global Accounts & Services Platform</div>
+
+        <div class="notice-box">
+            🚀 官方专属服务通道已开通
+            <span>联系方式正在准备中，敬请期待...</span>
+        </div>
+
+        <div class="btn-group">
+            <a href="weixin://" class="btn btn-wx">💬 联系微信客服</a>
+            <a href="https://t.me/你的飞机号" target="_blank" class="btn btn-tg">✈️ 点击进入 Telegram 专线</a>
+        </div>
+
+        <div class="footer">
+            24H 自动发货 · 安全稳定 · 售后无忧
+        </div>
+    </div>
+</body>
+</html>
