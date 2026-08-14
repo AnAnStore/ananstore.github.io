@@ -14,7 +14,7 @@
         body {
             font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
             min-height: 100vh;
-            /* 背景图：确保你的路径依然正确 */
+            /* 你的背景图在最外面 */
             background: url('bg.jpg') no-repeat center center fixed;
             background-size: cover;
             display: flex;
@@ -42,123 +42,88 @@
             width: 100%;
             height: 100%;
             z-index: 2; 
-            pointer-events: none; /* 让鼠标穿透画布，不影响点击 */
+            pointer-events: none;
         }
 
-        .card {
+        /* ====== 新的：人物容器区域 ====== */
+        .characters-wrapper {
             position: relative;
-            z-index: 3; 
-            background: rgba(20, 20, 35, 0.7);
-            backdrop-filter: blur(16px);
-            -webkit-backdrop-filter: blur(16px);
-            border: 1px solid rgba(0, 243, 255, 0.3);
-            border-radius: 20px;
-            padding: 35px 25px;
-            width: 100%;
-            max-width: 440px;
-            text-align: center;
-            box-shadow: 0 0 35px rgba(0, 243, 255, 0.2);
-            animation: fadeIn 0.8s ease-out;
-        }
-
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(20px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-
-        .welcome-badge {
-            display: inline-block;
-            color: #00f3ff;
-            font-size: 13px;
-            font-weight: bold;
-            letter-spacing: 2px;
-            text-transform: uppercase;
-            margin-bottom: 12px;
-            background: rgba(0, 243, 255, 0.05);
-            padding: 5px 12px;
-            border-radius: 20px;
-            border: 1px solid rgba(0, 243, 255, 0.2);
-        }
-        .title {
-            color: #fff;
-            font-size: 26px;
-            font-weight: bold;
-            margin-bottom: 12px;
-            letter-spacing: 1px;
-            text-shadow: 0 0 10px rgba(0, 243, 255, 0.6);
-        }
-        .slogan {
-            color: #ffcc00;
-            font-size: 13px;
-            line-height: 1.6;
-            margin-bottom: 25px;
-            background: rgba(0, 0, 0, 0.3);
-            padding: 12px 15px;
-            border-radius: 10px;
-            border: 1px dashed rgba(255, 204, 0, 0.3);
-        }
-
-        .btn-group {
+            z-index: 3;
             display: flex;
-            flex-direction: column;
-            gap: 14px;
-        }
-        .btn {
-            display: block;
+            justify-content: center;
+            align-items: center;
+            gap: 30px; /* 以后放多个小人时的间距 */
+            flex-wrap: wrap;
             width: 100%;
-            padding: 14px;
-            border-radius: 10px;
-            text-decoration: none;
-            font-weight: bold;
+            max-width: 1200px;
+        }
+
+        /* 单个人物的卡片（透明背景） */
+        .character-card {
+            position: relative;
+            width: 240px; /* 小人的宽度，可以根据需要改大小 */
+            transition: transform 0.4s ease, filter 0.4s ease;
+        }
+
+        /* 鼠标移到小人身上时的浮动发光特效 */
+        .character-card:hover {
+            transform: translateY(-15px);
+            filter: drop-shadow(0 0 25px rgba(0, 243, 255, 0.6));
+        }
+
+        /* 抠好的小人图片 */
+        .char-img {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        /* 放在礼盒上的文字按钮 */
+        .box-btn {
+            position: absolute;
+            /* 👇 【关键位置】如果按钮偏上或偏下，请修改这个 bottom 的百分比（比如改成 20% 或 30%） */
+            bottom: 22%; 
+            left: 50%;
+            transform: translateX(-50%);
+            
+            /* 按钮外观设计 */
+            background: rgba(10, 10, 25, 0.85);
+            color: #00f3ff;
+            padding: 8px 18px;
+            border-radius: 12px;
             font-size: 15px;
-            transition: all 0.3s ease;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+            font-weight: bold;
+            text-decoration: none;
+            white-space: nowrap;
+            border: 1px solid rgba(0, 243, 255, 0.5);
+            box-shadow: 0 4px 15px rgba(0,0,0,0.5);
+            transition: all 0.3s;
         }
-        .btn-wx {
-            background: linear-gradient(135deg, #07c160, #059b4c);
-            color: #fff;
+
+        /* 鼠标移到按钮上时更亮 */
+        .character-card:hover .box-btn {
+            background: #00f3ff;
+            color: #000;
+            box-shadow: 0 0 20px rgba(0, 243, 255, 0.8);
         }
-        .btn-wx:hover {
-            box-shadow: 0 0 15px rgba(7, 193, 96, 0.5);
-            transform: translateY(-2px);
-        }
-        .btn-tg {
-            background: linear-gradient(135deg, #229ed9, #1b7db1);
-            color: #fff;
-        }
-        .btn-tg:hover {
-            box-shadow: 0 0 15px rgba(34, 158, 217, 0.5);
-            transform: translateY(-2px);
-        }
-        .footer {
-            margin-top: 25px;
-            color: rgba(255, 255, 255, 0.4);
-            font-size: 12px;
-        }
+
     </style>
 </head>
 <body>
     <div class="overlay"></div>
-
     <canvas id="effectCanvas"></canvas>
 
-    <div class="card">
-        <div class="welcome-badge">Welcome to AnAn Store</div>
-        <div class="title">✨ 安安百货 ✨</div>
-        <div class="slogan">
-            安安百货始于2025蛇年新生<br>
-            我们不仅传递商品，更守护每一份平安~
+    <div class="characters-wrapper">
+        
+        <div class="character-card">
+            <img src="images/box-character.png" alt="TG客服" class="char-img">
+            <a href="https://t.me/BF88878" target="_blank" class="box-btn">TG客服</a>
         </div>
-        <div class="btn-group">
-            <a href="weixin://" class="btn btn-wx">💬 联系微信客服</a>
-            <a href="https://t.me/你的飞机号" target="_blank" class="btn btn-tg">✈️ 点击进入 Telegram 专线</a>
-        </div>
-        <div class="footer">
-            24H 自动发货 · 安全稳定 · 售后无忧
-        </div>
+
     </div>
 
     <script>
+        // ====== 保持不变的雨滴和鼠标特效 ======
         const canvas = document.getElementById('effectCanvas');
         const ctx = canvas.getContext('2d');
 
@@ -169,14 +134,11 @@
         window.addEventListener('resize', resizeCanvas);
         resizeCanvas();
 
-        // ================= 毛毛雨特效 =================
         let raindrops = [];
         const dropCount = 60; 
 
         class Raindrop {
-            constructor() {
-                this.init();
-            }
+            constructor() { this.init(); }
             init() {
                 this.x = Math.random() * canvas.width; 
                 this.y = Math.random() * canvas.height; 
@@ -205,15 +167,12 @@
             raindrops.push(new Raindrop());
         }
 
-        // ================= 鼠标拖尾特效 =================
         let particles = [];
         const mouse = { x: undefined, y: undefined };
 
-        // 监听鼠标移动
         window.addEventListener('mousemove', (event) => {
             mouse.x = event.x;
             mouse.y = event.y;
-            // 每次移动产生几个粒子
             for (let i = 0; i < 3; i++) {
                 particles.push(new Particle());
             }
@@ -223,23 +182,18 @@
             constructor() {
                 this.x = mouse.x;
                 this.y = mouse.y;
-                // 粒子随机大小
                 this.size = Math.random() * 3 + 1;
-                // 粒子往四周随机散开的速度
                 this.speedX = Math.random() * 2 - 1;
                 this.speedY = Math.random() * 2 - 1;
-                // 粒子生命周期（用于控制透明度淡出）
                 this.life = 1; 
             }
             update() {
                 this.x += this.speedX;
                 this.y += this.speedY;
-                // 逐渐缩小并变透明
                 if (this.size > 0.1) this.size -= 0.05;
                 this.life -= 0.03;
             }
             draw() {
-                // 青蓝色霓虹粒子
                 ctx.fillStyle = `rgba(0, 243, 255, ${this.life})`;
                 ctx.beginPath();
                 ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
@@ -247,30 +201,22 @@
             }
         }
 
-        // ================= 动画主循环 =================
         function animate() {
             ctx.clearRect(0, 0, canvas.width, canvas.height); 
-
-            // 渲染雨滴
             for (let i = 0; i < raindrops.length; i++) {
                 raindrops[i].update();
                 raindrops[i].draw();
             }
-
-            // 渲染鼠标粒子
             for (let i = 0; i < particles.length; i++) {
                 particles[i].update();
                 particles[i].draw();
-                // 如果粒子生命周期结束，从数组中移除
                 if (particles[i].life <= 0) {
                     particles.splice(i, 1);
-                    i--; // 调整索引，防止闪烁
+                    i--; 
                 }
             }
-
             requestAnimationFrame(animate);
         }
-
         animate();
     </script>
 </body>
