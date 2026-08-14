@@ -57,19 +57,19 @@
             max-width: 1200px;
         }
 
-        /* 超大号震撼卡片区域 */
+        /* 黄金比例的人物卡片大小（320px，既清晰又精致） */
         .gift-box-character {
             position: relative;
-            width: 460px; /* 👈 巨幅放大：人物宽度达到了460px，充满视觉张力 */
+            width: 320px; 
             display: block;
             text-decoration: none;
             transition: transform 0.4s ease, filter 0.4s ease;
         }
 
-        /* 鼠标悬停时上浮并发出强烈赛博蓝光 */
+        /* 鼠标悬停时上浮与发光 */
         .gift-box-character:hover {
-            transform: translateY(-18px);
-            filter: drop-shadow(0 0 35px rgba(0, 243, 255, 0.9));
+            transform: translateY(-15px);
+            filter: drop-shadow(0 0 25px rgba(0, 243, 255, 0.8));
         }
 
         /* 人物图片本体 */
@@ -79,33 +79,33 @@
             display: block;
         }
 
-        /* ====== 被人物“抱在怀里”的文字标签（精致小巧，完美嵌在胸前/礼盒上） ====== */
+        /* ====== 精准对齐礼盒正中央的精致按钮 ====== */
         .box-button-label {
             position: absolute;
-            /* 调整位置，让字刚好落在人物怀抱的正中央 */
-            bottom: 27%; 
+            /* 调整 bottom 和 left/transform，确保严丝合缝落在礼盒中间 */
+            bottom: 23%; 
             left: 50%;
             transform: translateX(-50%);
             
-            background: rgba(10, 10, 25, 0.85);
+            background: rgba(10, 10, 25, 0.9);
             color: #00f3ff;
-            padding: 6px 16px; /* 适当减小内边距，让文字显得精致聚焦 */
-            border-radius: 10px;
-            font-size: 15px; /* 字体比人物小很多，形成强烈的主次对比，像被“抱”着一样 */
+            padding: 5px 14px; /* 框变小，更精致 */
+            border-radius: 8px;
+            font-size: 13px; /* 字体适度缩小，完美融入礼盒 */
             font-weight: bold;
-            letter-spacing: 1px;
+            letter-spacing: 0.5px;
             white-space: nowrap;
-            border: 1px solid rgba(0, 243, 255, 0.6);
-            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.6);
+            border: 1px solid rgba(0, 243, 255, 0.7);
+            box-shadow: 0 3px 10px rgba(0, 0, 0, 0.6);
             transition: all 0.3s ease;
             z-index: 4;
         }
 
-        /* 鼠标悬停时，怀里的字变成亮蓝色发光体 */
+        /* 鼠标悬停时按钮变亮 */
         .gift-box-character:hover .box-button-label {
             background: #00f3ff;
             color: #000;
-            box-shadow: 0 0 25px rgba(0, 243, 255, 1);
+            box-shadow: 0 0 20px rgba(0, 243, 255, 1);
         }
 
     </style>
