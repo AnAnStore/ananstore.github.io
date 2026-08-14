@@ -1,159 +1,4 @@
-<!DOCTYPE html>
-<html lang="zh-CN">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>安安百货 - 官方专属直达通道</title>
-    <link rel="icon" type="image/jpeg" href="images/avatar.jpg">
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-        body {
-            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-            min-height: 100vh;
-            background: url('bg.jpg') no-repeat center center fixed;
-            background-size: cover;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            padding: 20px;
-            overflow: hidden; 
-            position: relative;
-        }
-
-        .overlay {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(5, 5, 15, 0.7);
-            z-index: 1;
-        }
-
-        #effectCanvas {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            z-index: 2; 
-            pointer-events: none;
-        }
-
-        /* ====== 多人物容器（自动横向弹性排列） ====== */
-        .characters-wrapper {
-            position: relative;
-            z-index: 3;
-            display: flex;
-            justify-content: center;
-            align-items: flex-end; /* 让所有小人底部对齐 */
-            gap: 50px; 
-            flex-wrap: wrap;
-            width: 100%;
-            max-width: 1200px;
-        }
-
-        /* 统一人物卡片外框 */
-        .gift-box-character {
-            position: relative;
-            width: 260px; 
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: flex-end;
-            text-decoration: none;
-            transition: transform 0.4s ease, filter 0.4s ease;
-        }
-
-        /* 悬停浮动与发光特效 */
-        .gift-box-character:hover {
-            transform: translateY(-12px);
-            filter: drop-shadow(0 0 25px rgba(0, 243, 255, 0.8));
-        }
-
-        .char-img {
-            width: 100%;
-            height: auto;
-            display: block;
-        }
-
-        /* ====== 【关键】单独微调两个人物的大小平衡 ====== */
-        .char1-img {
-            transform: scale(1.3); /* 把左边偏小的小女孩放大 30% */
-            transform-origin: bottom center;
-        }
-
-        .char2-img {
-            transform: scale(1.0); /* 右边的小男孩保持原大小 */
-            transform-origin: bottom center;
-        }
-
-        /* ====== 礼盒核心文字按钮 ====== */
-        .box-button-label {
-            position: absolute;
-            bottom: 24%; /* 刚好压在礼盒中间 */
-            left: 50%;
-            transform: translateX(-50%);
-            
-            background: rgba(10, 10, 25, 0.9);
-            color: #00f3ff;
-            padding: 8px 20px;
-            border-radius: 12px;
-            font-size: 16px;
-            font-weight: bold;
-            white-space: nowrap;
-            border: 1px solid rgba(0, 243, 255, 0.6);
-            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.6);
-            transition: all 0.3s ease;
-            z-index: 4;
-        }
-
-        .gift-box-character:hover .box-button-label {
-            background: #00f3ff;
-            color: #000;
-            box-shadow: 0 0 20px rgba(0, 243, 255, 0.9);
-        }
-
-    </style>
-</head>
-<body>
-    <div class="overlay"></div>
-    <canvas id="effectCanvas"></canvas>
-
-    <div class="characters-wrapper">
-        
-        <a href="https://t.me/BF88878" target="_blank" class="gift-box-character">
-            <img src="images/box-character.png" alt="TG客服" class="char-img char1-img">
-            <div class="box-button-label">TG客服</div>
-        </a>
-
-        <a href="https://ananfaka.com/" target="_blank" class="gift-box-character">
-            <img src="images/box-character2.png" alt="一键购物" class="char-img char2-img">
-            <div class="box-button-label">一键购物</div>
-        </a>
-
-    </div>
-
-    <script>
-        // 雨滴与光点特效
-        const canvas = document.getElementById('effectCanvas');
-        const ctx = canvas.getContext('2d');
-
-        function resizeCanvas() {
-            canvas.width = window.innerWidth;
-            canvas.height = window.innerHeight;
-        }
-        window.addEventListener('resize', resizeCanvas);
-        resizeCanvas();
-
-        let raindrops = [];
-        const dropCount = 60; 
-
-        class Raindrop {
+class Raindrop {
             constructor() { this.init(); }
             init() {
                 this.x = Math.random() * canvas.width; 
@@ -171,7 +16,7 @@
             }
             draw() {
                 ctx.beginPath();
-                ctx.strokeStyle = `rgba(180, 210, 240, ${this.opacity})`; 
+                ctx.strokeStyle = rgba(180, 210, 240, ${this.opacity}); 
                 ctx.lineWidth = 1; 
                 ctx.moveTo(this.x, this.y);
                 ctx.lineTo(this.x + (Math.random()*1 - 0.5), this.y + this.length); 
@@ -210,7 +55,7 @@
                 this.life -= 0.03;
             }
             draw() {
-                ctx.fillStyle = `rgba(0, 243, 255, ${this.life})`;
+                ctx.fillStyle = rgba(0, 243, 255, ${this.life});
                 ctx.beginPath();
                 ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
                 ctx.fill();
