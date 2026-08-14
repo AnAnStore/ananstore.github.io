@@ -44,7 +44,7 @@
             pointer-events: none;
         }
 
-        /* ====== 动漫人物容器区域 ====== */
+        /* ====== 人物容器区域 ====== */
         .characters-wrapper {
             position: relative;
             z-index: 3;
@@ -57,59 +57,55 @@
             max-width: 1200px;
         }
 
-        /* 单个人物的卡片样式 */
-        .anime-char-card {
+        /* 整个包裹卡片：把链接直接赋给它，实现整张图（连同人物和礼盒）都可以点击 */
+        .gift-box-character {
             position: relative;
-            width: 260px; 
-            display: flex;
-            flex-direction: column;
-            align-items: center;
+            width: 280px; /* 控制人物显示的大小 */
+            display: block;
+            text-decoration: none;
             transition: transform 0.4s ease, filter 0.4s ease;
-            cursor: pointer;
-            text-decoration: none; 
         }
 
-        .anime-char-card:hover {
-            transform: translateY(-15px) scale(1.03);
-            filter: drop-shadow(0 0 25px rgba(0, 243, 255, 0.8));
+        /* 鼠标悬停时，人物整体产生向上的浮动和酷炫的发光特效 */
+        .gift-box-character:hover {
+            transform: translateY(-12px);
+            filter: drop-shadow(0 0 25px rgba(0, 243, 255, 0.7));
         }
 
-        /* 动漫人物图片样式（加了一点圆角和光效边框让它更好看） */
+        /* 人物图片本体 */
         .char-img {
             width: 100%;
-            height: 340px;
-            object-fit: cover;
-            border-radius: 20px;
-            border: 2px solid rgba(0, 243, 255, 0.4);
-            box-shadow: 0 10px 30px rgba(0,0,0,0.8);
+            height: auto;
             display: block;
         }
 
-        /* ====== 怀里的发光文字 ====== */
-        .hugging-text {
+        /* ====== 绝对精准：放在礼盒怀里的文字按钮 ====== */
+        .box-button-label {
             position: absolute;
-            bottom: 25%; 
+            /* 👇 这里的数值决定了文字上下位置。如果发现文字不在礼盒上，可以微调这个百分比 */
+            bottom: 24%; 
             left: 50%;
             transform: translateX(-50%);
             
-            background: rgba(10, 10, 25, 0.85);
+            /* 按钮外观：赛博朋克霓虹风格 */
+            background: rgba(10, 10, 25, 0.9);
             color: #00f3ff;
-            padding: 10px 22px;
-            border-radius: 14px;
-            font-size: 18px;
+            padding: 8px 20px;
+            border-radius: 12px;
+            font-size: 16px;
             font-weight: bold;
             white-space: nowrap;
             border: 1px solid rgba(0, 243, 255, 0.6);
-            box-shadow: 0 4px 15px rgba(0,0,0,0.6);
-            
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.6);
+            transition: all 0.3s ease;
             z-index: 4;
-            transition: all 0.3s;
         }
 
-        .anime-char-card:hover .hugging-text {
+        /* 鼠标悬停时，怀里的礼盒按钮变亮变炫酷 */
+        .gift-box-character:hover .box-button-label {
             background: #00f3ff;
             color: #000;
-            box-shadow: 0 0 25px rgba(0, 243, 255, 0.9);
+            box-shadow: 0 0 20px rgba(0, 243, 255, 0.9);
         }
 
     </style>
@@ -120,15 +116,15 @@
 
     <div class="characters-wrapper">
         
-        <a href="https://t.me/BF88878" target="_blank" class="anime-char-card">
-            <img src="https://images.unsplash.com/photo-1578632767115-351597cf2477?w=400&auto=format&fit=crop&q=80" alt="TG客服" class="char-img">
-            <span class="hugging-text">TG客服</span>
+        <a href="https://t.me/BF88878" target="_blank" class="gift-box-character">
+            <img src="images/box-character.png" alt="TG客服" class="char-img">
+            <div class="box-button-label">TG客服</div>
         </a>
 
     </div>
 
     <script>
-        // 雨滴和鼠标动态特效
+        // 背景雨滴和鼠标特效
         const canvas = document.getElementById('effectCanvas');
         const ctx = canvas.getContext('2d');
 
@@ -210,7 +206,7 @@
             ctx.clearRect(0, 0, canvas.width, canvas.height); 
             for (let i = 0; i < raindrops.length; i++) {
                 raindrops[i].update();
-                raindrops[i].draw();
+                raindrops.draw();
             }
             for (let i = 0; i < particles.length; i++) {
                 particles[i].update();
