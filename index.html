@@ -57,19 +57,19 @@
             max-width: 1200px;
         }
 
-        /* 放大后的整体卡片区域 */
+        /* 超大号震撼卡片区域 */
         .gift-box-character {
             position: relative;
-            width: 360px; /* 👈 这里控制人物的大小，数值越大人物越显大 */
+            width: 460px; /* 👈 巨幅放大：人物宽度达到了460px，充满视觉张力 */
             display: block;
             text-decoration: none;
             transition: transform 0.4s ease, filter 0.4s ease;
         }
 
-        /* 鼠标悬停时上浮并带有炫酷霓虹发光特效 */
+        /* 鼠标悬停时上浮并发出强烈赛博蓝光 */
         .gift-box-character:hover {
-            transform: translateY(-15px);
-            filter: drop-shadow(0 0 30px rgba(0, 243, 255, 0.8));
+            transform: translateY(-18px);
+            filter: drop-shadow(0 0 35px rgba(0, 243, 255, 0.9));
         }
 
         /* 人物图片本体 */
@@ -79,27 +79,29 @@
             display: block;
         }
 
-        /* ====== 礼盒怀里的文字按钮（随人物放大而同步放大） ====== */
+        /* ====== 被人物“抱在怀里”的文字标签（精致小巧，完美嵌在胸前/礼盒上） ====== */
         .box-button-label {
             position: absolute;
-            bottom: 24%; 
+            /* 调整位置，让字刚好落在人物怀抱的正中央 */
+            bottom: 27%; 
             left: 50%;
             transform: translateX(-50%);
             
-            background: rgba(10, 10, 25, 0.9);
+            background: rgba(10, 10, 25, 0.85);
             color: #00f3ff;
-            padding: 10px 24px;
-            border-radius: 14px;
-            font-size: 18px; /* 字体调大 */
+            padding: 6px 16px; /* 适当减小内边距，让文字显得精致聚焦 */
+            border-radius: 10px;
+            font-size: 15px; /* 字体比人物小很多，形成强烈的主次对比，像被“抱”着一样 */
             font-weight: bold;
+            letter-spacing: 1px;
             white-space: nowrap;
-            border: 1.5px solid rgba(0, 243, 255, 0.7);
-            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.7);
+            border: 1px solid rgba(0, 243, 255, 0.6);
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.6);
             transition: all 0.3s ease;
             z-index: 4;
         }
 
-        /* 鼠标悬停时按钮变亮 */
+        /* 鼠标悬停时，怀里的字变成亮蓝色发光体 */
         .gift-box-character:hover .box-button-label {
             background: #00f3ff;
             color: #000;
