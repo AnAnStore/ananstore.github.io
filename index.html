@@ -44,28 +44,31 @@
             pointer-events: none;
         }
 
-        /* ====== 人物容器区域 ====== */
+        /* ====== 多人物容器（自动横向弹性排列） ====== */
         .characters-wrapper {
             position: relative;
             z-index: 3;
             display: flex;
             justify-content: center;
             align-items: center;
+            gap: 50px; /* 控制两个小人之间的距离 */
+            flex-wrap: wrap;
             width: 100%;
             max-width: 1200px;
         }
 
-        /* 电脑端默认尺寸 */
+        /* 统一人物卡片外框 */
         .gift-box-character {
             position: relative;
-            width: 320px; 
+            width: 260px; /* 控制小人在屏幕上的大小 */
             display: block;
             text-decoration: none;
             transition: transform 0.4s ease, filter 0.4s ease;
         }
 
+        /* 悬停浮动与发光特效 */
         .gift-box-character:hover {
-            transform: translateY(-15px);
+            transform: translateY(-12px);
             filter: drop-shadow(0 0 25px rgba(0, 243, 255, 0.8));
         }
 
@@ -75,22 +78,22 @@
             display: block;
         }
 
-        /* 电脑端按钮样式 */
+        /* ====== 礼盒核心文字按钮 ====== */
         .box-button-label {
             position: absolute;
-            bottom: 23%; 
+            bottom: 24%; /* 刚好压在礼盒中间的黄金位置 */
             left: 50%;
             transform: translateX(-50%);
+            
             background: rgba(10, 10, 25, 0.9);
             color: #00f3ff;
-            padding: 5px 14px;
-            border-radius: 8px;
-            font-size: 13px;
+            padding: 8px 20px;
+            border-radius: 12px;
+            font-size: 16px;
             font-weight: bold;
-            letter-spacing: 0.5px;
             white-space: nowrap;
-            border: 1px solid rgba(0, 243, 255, 0.7);
-            box-shadow: 0 3px 10px rgba(0, 0, 0, 0.6);
+            border: 1px solid rgba(0, 243, 255, 0.6);
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.6);
             transition: all 0.3s ease;
             z-index: 4;
         }
@@ -98,19 +101,7 @@
         .gift-box-character:hover .box-button-label {
             background: #00f3ff;
             color: #000;
-            box-shadow: 0 0 20px rgba(0, 243, 255, 1);
-        }
-
-        /* ====== 📱 手机端专属优化（屏幕宽度小于 768px 时自动生效） ====== */
-        @media screen and (max-width: 768px) {
-            .gift-box-character {
-                width: 260px; /* 在手机上稍微缩小，防止撑满屏幕两边 */
-            }
-            .box-button-label {
-                font-size: 12px;
-                padding: 4px 12px;
-                bottom: 23%; /* 确保在手机小屏幕上依然精准压在礼盒中央 */
-            }
+            box-shadow: 0 0 20px rgba(0, 243, 255, 0.9);
         }
 
     </style>
@@ -126,10 +117,15 @@
             <div class="box-button-label">TG客服</div>
         </a>
 
+        <a href="https://ananfaka.com/" target="_blank" class="gift-box-character">
+            <img src="images/box-character2.png" alt="一键购物" class="char-img">
+            <div class="box-button-label">一键购物</div>
+        </a>
+
     </div>
 
     <script>
-        // 背景雨滴和鼠标特效
+        // 雨滴与光点跟随特效
         const canvas = document.getElementById('effectCanvas');
         const ctx = canvas.getContext('2d');
 
