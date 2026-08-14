@@ -57,19 +57,19 @@
             max-width: 1200px;
         }
 
-        /* 整个包裹卡片：把链接直接赋给它，实现整张图（连同人物和礼盒）都可以点击 */
+        /* 放大后的整体卡片区域 */
         .gift-box-character {
             position: relative;
-            width: 280px; /* 控制人物显示的大小 */
+            width: 360px; /* 👈 这里控制人物的大小，数值越大人物越显大 */
             display: block;
             text-decoration: none;
             transition: transform 0.4s ease, filter 0.4s ease;
         }
 
-        /* 鼠标悬停时，人物整体产生向上的浮动和酷炫的发光特效 */
+        /* 鼠标悬停时上浮并带有炫酷霓虹发光特效 */
         .gift-box-character:hover {
-            transform: translateY(-12px);
-            filter: drop-shadow(0 0 25px rgba(0, 243, 255, 0.7));
+            transform: translateY(-15px);
+            filter: drop-shadow(0 0 30px rgba(0, 243, 255, 0.8));
         }
 
         /* 人物图片本体 */
@@ -79,33 +79,31 @@
             display: block;
         }
 
-        /* ====== 绝对精准：放在礼盒怀里的文字按钮 ====== */
+        /* ====== 礼盒怀里的文字按钮（随人物放大而同步放大） ====== */
         .box-button-label {
             position: absolute;
-            /* 👇 这里的数值决定了文字上下位置。如果发现文字不在礼盒上，可以微调这个百分比 */
             bottom: 24%; 
             left: 50%;
             transform: translateX(-50%);
             
-            /* 按钮外观：赛博朋克霓虹风格 */
             background: rgba(10, 10, 25, 0.9);
             color: #00f3ff;
-            padding: 8px 20px;
-            border-radius: 12px;
-            font-size: 16px;
+            padding: 10px 24px;
+            border-radius: 14px;
+            font-size: 18px; /* 字体调大 */
             font-weight: bold;
             white-space: nowrap;
-            border: 1px solid rgba(0, 243, 255, 0.6);
-            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.6);
+            border: 1.5px solid rgba(0, 243, 255, 0.7);
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.7);
             transition: all 0.3s ease;
             z-index: 4;
         }
 
-        /* 鼠标悬停时，怀里的礼盒按钮变亮变炫酷 */
+        /* 鼠标悬停时按钮变亮 */
         .gift-box-character:hover .box-button-label {
             background: #00f3ff;
             color: #000;
-            box-shadow: 0 0 20px rgba(0, 243, 255, 0.9);
+            box-shadow: 0 0 25px rgba(0, 243, 255, 1);
         }
 
     </style>
@@ -206,7 +204,7 @@
             ctx.clearRect(0, 0, canvas.width, canvas.height); 
             for (let i = 0; i < raindrops.length; i++) {
                 raindrops[i].update();
-                raindrops.draw();
+                raindrops[i].draw();
             }
             for (let i = 0; i < particles.length; i++) {
                 particles[i].update();
