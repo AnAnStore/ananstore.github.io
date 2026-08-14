@@ -20,7 +20,7 @@
             justify-content: center;
             align-items: center;
             padding: 20px;
-            overflow: x-hidden; 
+            overflow-x: hidden; 
             position: relative;
         }
 
@@ -44,7 +44,7 @@
             pointer-events: none;
         }
 
-        /* ====== 5个人物一字排开的容器 ====== */
+        /* ====== 5个人物分身的容器 ====== */
         .characters-wrapper {
             position: relative;
             z-index: 3;
@@ -57,51 +57,69 @@
             max-width: 1300px;
         }
 
-        /* 单个人物卡片 */
+        /* 单个人物卡片 (核心：用来定义颜色) */
         .gift-box-character {
             position: relative;
             width: 200px; /* 5个人物时的合适大小 */
             display: block;
             text-decoration: none;
             transition: transform 0.4s ease, filter 0.4s ease;
+            cursor: pointer;
         }
 
-        /* 鼠标悬停悬浮发光 */
+        /* ====== 【关键】给每个分身设置不同的霓虹衣服色 ====== */
+        .gift-box-character.color-1 { --neon-color: #00f3ff; } /* 青蓝色 */
+        .gift-box-character.color-2 { --neon-color: #ff00ff; } /* 霓虹粉 */
+        .gift-box-character.color-3 { --neon-color: #ffd700; } /* 金黄色 */
+        .gift-box-character.color-4 { --neon-color: #00ff7f; } /* 翡翠绿 */
+        .gift-box-character.color-5 { --neon-color: #9400d3; } /* 紫罗兰 */
+
+        /* 鼠标悬停整体悬浮和颜色爆发 */
         .gift-box-character:hover {
-            transform: translateY(-12px) scale(1.05);
-            filter: drop-shadow(0 0 25px rgba(0, 243, 255, 0.8));
+            transform: translateY(-12px) scale(1.03);
+            /* 使用各自的霓虹色产生发光 */
+            filter: drop-shadow(0 0 25px var(--neon-color));
         }
 
+        /* 人物图片本体 */
         .char-img {
             width: 100%;
             height: auto;
             display: block;
+            /* 关键：使用各自的霓虹色对衣服边缘进行上色 */
+            border: 2px solid rgba(var(--neon-color), 0.2);
+            border-radius: 20px;
         }
 
-        /* 放在礼盒怀里的文字按钮 */
+        /* 精准贴合礼盒的文字按钮 */
         .box-button-label {
             position: absolute;
+            /* 👇 这个 bottom 百分比极其重要，需要微调到刚好盖在礼盒上 */
             bottom: 24%; 
             left: 50%;
             transform: translateX(-50%);
             
-            background: rgba(10, 10, 25, 0.9);
-            color: #00f3ff;
-            padding: 6px 14px;
-            border-radius: 10px;
-            font-size: 14px;
+            /* 文字样式：赛博霓虹风格 */
+            background: rgba(10, 10, 25, 0.95);
+            color: var(--neon-color); /* 文字使用各自的霓虹色 */
+            padding: 7px 18px;
+            border-radius: 12px;
+            font-size: 15px;
             font-weight: bold;
             white-space: nowrap;
-            border: 1px solid rgba(0, 243, 255, 0.6);
+            /* 霓虹灯边框特效 */
+            border: 1px solid var(--neon-color);
             box-shadow: 0 4px 15px rgba(0, 0, 0, 0.6);
-            transition: all 0.3s ease;
+            
             z-index: 4;
+            transition: all 0.3s ease;
         }
 
+        /* 鼠标悬停时，怀里的礼盒按钮变亮变炫酷 */
         .gift-box-character:hover .box-button-label {
-            background: #00f3ff;
+            background: var(--neon-color); /* 鼠标覆盖时背景变色 */
             color: #000;
-            box-shadow: 0 0 20px rgba(0, 243, 255, 0.9);
+            box-shadow: 0 0 20px var(--neon-color);
         }
 
     </style>
@@ -112,27 +130,27 @@
 
     <div class="characters-wrapper">
         
-        <a href="https://t.me/BF88878" target="_blank" class="gift-box-character">
+        <a href="https://t.me/BF88878" target="_blank" class="gift-box-character color-1">
             <img src="images/box-character.png" alt="TG客服" class="char-img">
             <div class="box-button-label">TG客服</div>
         </a>
 
-        <a href="https://t.me/BF88878" target="_blank" class="gift-box-character">
+        <a href="https://t.me/BF88878" target="_blank" class="gift-box-character color-2">
             <img src="images/box-character.png" alt="微信客服" class="char-img">
             <div class="box-button-label">微信客服</div>
         </a>
 
-        <a href="https://t.me/BF88878" target="_blank" class="gift-box-character">
+        <a href="https://t.me/BF88878" target="_blank" class="gift-box-character color-3">
             <img src="images/box-character.png" alt="商品目录" class="char-img">
             <div class="box-button-label">商品目录</div>
         </a>
 
-        <a href="https://t.me/BF88878" target="_blank" class="gift-box-character">
+        <a href="https://t.me/BF88878" target="_blank" class="gift-box-character color-4">
             <img src="images/box-character.png" alt="优惠活动" class="char-img">
             <div class="box-button-label">优惠活动</div>
         </a>
 
-        <a href="https://t.me/BF88878" target="_blank" class="gift-box-character">
+        <a href="https://t.me/BF88878" target="_blank" class="gift-box-character color-5">
             <img src="images/box-character.png" alt="售后保障" class="char-img">
             <div class="box-button-label">售后保障</div>
         </a>
