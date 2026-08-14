@@ -1,4 +1,160 @@
-class Raindrop {
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>安安百货 - 官方专属直达通道</title>
+    <link rel="icon" type="image/jpeg" href="images/avatar.jpg">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            min-height: 100vh;
+            background: url('bg.jpg') no-repeat center center fixed;
+            background-size: cover;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+            overflow: x-hidden; 
+            position: relative;
+        }
+
+        .overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(5, 5, 15, 0.7);
+            z-index: 1;
+        }
+
+        #effectCanvas {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 2; 
+            pointer-events: none;
+        }
+
+        /* ====== 5个人物一字排开的容器 ====== */
+        .characters-wrapper {
+            position: relative;
+            z-index: 3;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 20px; 
+            flex-wrap: wrap; /* 手机屏幕会自动换行，完美适配电脑和手机 */
+            width: 100%;
+            max-width: 1300px;
+        }
+
+        /* 单个人物卡片 */
+        .gift-box-character {
+            position: relative;
+            width: 200px; /* 5个人物时的合适大小 */
+            display: block;
+            text-decoration: none;
+            transition: transform 0.4s ease, filter 0.4s ease;
+        }
+
+        /* 鼠标悬停悬浮发光 */
+        .gift-box-character:hover {
+            transform: translateY(-12px) scale(1.05);
+            filter: drop-shadow(0 0 25px rgba(0, 243, 255, 0.8));
+        }
+
+        .char-img {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        /* 放在礼盒怀里的文字按钮 */
+        .box-button-label {
+            position: absolute;
+            bottom: 24%; 
+            left: 50%;
+            transform: translateX(-50%);
+            
+            background: rgba(10, 10, 25, 0.9);
+            color: #00f3ff;
+            padding: 6px 14px;
+            border-radius: 10px;
+            font-size: 14px;
+            font-weight: bold;
+            white-space: nowrap;
+            border: 1px solid rgba(0, 243, 255, 0.6);
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.6);
+            transition: all 0.3s ease;
+            z-index: 4;
+        }
+
+        .gift-box-character:hover .box-button-label {
+            background: #00f3ff;
+            color: #000;
+            box-shadow: 0 0 20px rgba(0, 243, 255, 0.9);
+        }
+
+    </style>
+</head>
+<body>
+    <div class="overlay"></div>
+    <canvas id="effectCanvas"></canvas>
+
+    <div class="characters-wrapper">
+        
+        <a href="https://t.me/BF88878" target="_blank" class="gift-box-character">
+            <img src="images/box-character.png" alt="TG客服" class="char-img">
+            <div class="box-button-label">TG客服</div>
+        </a>
+
+        <a href="https://t.me/BF88878" target="_blank" class="gift-box-character">
+            <img src="images/box-character.png" alt="微信客服" class="char-img">
+            <div class="box-button-label">微信客服</div>
+        </a>
+
+        <a href="https://t.me/BF88878" target="_blank" class="gift-box-character">
+            <img src="images/box-character.png" alt="商品目录" class="char-img">
+            <div class="box-button-label">商品目录</div>
+        </a>
+
+        <a href="https://t.me/BF88878" target="_blank" class="gift-box-character">
+            <img src="images/box-character.png" alt="优惠活动" class="char-img">
+            <div class="box-button-label">优惠活动</div>
+        </a>
+
+        <a href="https://t.me/BF88878" target="_blank" class="gift-box-character">
+            <img src="images/box-character.png" alt="售后保障" class="char-img">
+            <div class="box-button-label">售后保障</div>
+        </a>
+
+    </div>
+
+    <script>
+        // 背景雨滴和鼠标特效
+        const canvas = document.getElementById('effectCanvas');
+        const ctx = canvas.getContext('2d');
+
+        function resizeCanvas() {
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
+        }
+        window.addEventListener('resize', resizeCanvas);
+        resizeCanvas();
+
+        let raindrops = [];
+        const dropCount = 60; 
+
+        class Raindrop {
             constructor() { this.init(); }
             init() {
                 this.x = Math.random() * canvas.width; 
@@ -16,7 +172,7 @@ class Raindrop {
             }
             draw() {
                 ctx.beginPath();
-                ctx.strokeStyle = rgba(180, 210, 240, ${this.opacity}); 
+                ctx.strokeStyle = `rgba(180, 210, 240, ${this.opacity})`; 
                 ctx.lineWidth = 1; 
                 ctx.moveTo(this.x, this.y);
                 ctx.lineTo(this.x + (Math.random()*1 - 0.5), this.y + this.length); 
@@ -55,7 +211,7 @@ class Raindrop {
                 this.life -= 0.03;
             }
             draw() {
-                ctx.fillStyle = rgba(0, 243, 255, ${this.life});
+                ctx.fillStyle = `rgba(0, 243, 255, ${this.life})`;
                 ctx.beginPath();
                 ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
                 ctx.fill();
