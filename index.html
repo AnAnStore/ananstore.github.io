@@ -44,7 +44,7 @@
             pointer-events: none;
         }
 
-        /* 人物容器区域 */
+        /* ====== 人物容器区域 ====== */
         .characters-wrapper {
             position: relative;
             z-index: 3;
@@ -111,6 +111,7 @@
             color: #000;
             box-shadow: 0 0 20px var(--neon-color);
         }
+
     </style>
 </head>
 <body>
@@ -126,11 +127,11 @@
             <div class="box-button-label">TG客服</div>
         </a>
 
-        <!-- 按钮 2：在线客服（点击触发右下角聊天窗口） -->
-        <div class="gift-box-character color-2" onclick="openTawkChat()">
-            <img src="images/box-character.png" alt="在线客服" class="char-img">
-            <div class="box-button-label">在线客服</div>
-        </div>
+        <!-- 按钮 2：微信客服 -->
+        <a href="https://t.me/BF88878" target="_blank" class="gift-box-character color-2">
+            <img src="images/box-character.png" alt="微信客服" class="char-img">
+            <div class="box-button-label">微信客服</div>
+        </a>
 
         <!-- 按钮 3：QQ客服 -->
         <a href="https://qm.qq.com/q/c06Vzq90kg" target="_blank" class="gift-box-character color-3">
@@ -138,7 +139,7 @@
             <div class="box-button-label">QQ客服</div>
         </a>
 
-        <!-- 按钮 4：一键购物 -->
+        <!-- 按钮 4：一键购物（已替换链接） -->
         <a href="https://ananfaka.com/" target="_blank" class="gift-box-character color-4">
             <img src="images/box-character.png" alt="一键购物" class="char-img">
             <div class="box-button-label">一键购物</div>
@@ -153,15 +154,6 @@
     </div>
 
     <script>
-        // 点击“在线客服”小人时，展开右下角的聊天弹窗
-        function openTawkChat() {
-            if (typeof Tawk_API !== 'undefined') {
-                Tawk_API.maximize();
-            } else {
-                alert("在线客服加载中，请稍后刷新重试");
-            }
-        }
-
         const canvas = document.getElementById('effectCanvas');
         const ctx = canvas.getContext('2d');
 
@@ -257,20 +249,5 @@
         }
         animate();
     </script>
-
-    <!--Start of Tawk.to Script-->
-    <script type="text/javascript">
-    var Tawk_API=Tawk_API||{}, Tawk_LoadStart=new Date();
-    (function(){
-    var s1=document.createElement("script"),s0=document.getElementsByTagName("script")[0];
-    s1.async=true;
-    s1.src='https://embed.tawk.to/6a80eddf1d62051d4f680110/1k03q2ccs';
-    s1.charset='UTF-8';
-    s1.setAttribute('crossorigin','*');
-    s0.parentNode.insertBefore(s1,s0);
-    })();
-    </script>
-    <!--End of Tawk.to Script-->
-
 </body>
 </html>
