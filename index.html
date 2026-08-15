@@ -44,7 +44,7 @@
             pointer-events: none;
         }
 
-        /* ====== 人物容器区域 ====== */
+        /* 人物容器区域 */
         .characters-wrapper {
             position: relative;
             z-index: 3;
@@ -111,14 +111,13 @@
             color: #000;
             box-shadow: 0 0 20px var(--neon-color);
         }
-
     </style>
 </head>
 <body>
     <div class="overlay"></div>
     <canvas id="effectCanvas"></canvas>
 
-    <!-- ====== 人物按钮区域 ====== -->
+    <!-- ====== 原本的 5 个按钮保持不变 ====== -->
     <div class="characters-wrapper">
         
         <!-- 按钮 1：TG客服 -->
@@ -139,7 +138,7 @@
             <div class="box-button-label">QQ客服</div>
         </a>
 
-        <!-- 按钮 4：一键购物（已替换链接） -->
+        <!-- 按钮 4：一键购物 -->
         <a href="https://ananfaka.com/" target="_blank" class="gift-box-character color-4">
             <img src="images/box-character.png" alt="一键购物" class="char-img">
             <div class="box-button-label">一键购物</div>
@@ -249,5 +248,20 @@
         }
         animate();
     </script>
+
+    <!--Start of Tawk.to Script (自动在右下角生成气泡图标)-->
+    <script type="text/javascript">
+    var Tawk_API=Tawk_API||{}, Tawk_LoadStart=new Date();
+    (function(){
+    var s1=document.createElement("script"),s0=document.getElementsByTagName("script")[0];
+    s1.async=true;
+    s1.src='https://embed.tawk.to/6a80eddf1d62051d4f680110/1k03q2ccs';
+    s1.charset='UTF-8';
+    s1.setAttribute('crossorigin','*');
+    s0.parentNode.insertBefore(s1,s0);
+    })();
+    </script>
+    <!--End of Tawk.to Script-->
+
 </body>
 </html>
